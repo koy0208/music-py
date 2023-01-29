@@ -73,10 +73,11 @@ def wav2scale(filepath):
     return hz_list, scales
 
 
+# 実行例
 # filepath = "../data/きらきら星.wav"
 filepath = "../data/カエルの歌.wav"
 hz_list, scales = wav2scale(filepath)
-plt.plot(hz_list)
+plt.plot(hz_list[:-1])
 prev_scale = ""
 for i, hz_s in enumerate(zip(hz_list, scales)):
     hz = hz_s[0]
@@ -85,4 +86,10 @@ for i, hz_s in enumerate(zip(hz_list, scales)):
         plt.text(x=i, y=hz, s=scale)
     prev_scale = scale
 
+# 経過時間
+seq_times = np.arange(0, (len(hz_list) // 10) + 1)
+plt.xticks(ticks=np.arange(0, len(hz_list) + 1, 10), labels=seq_times)
+plt.xlabel("経過時間")
+plt.ylabel("Hz")
+plt.savefig("../sampel_plot.png")
 plt.show()
