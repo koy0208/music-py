@@ -3,4 +3,4 @@ wavファイルから、音階を判定し、plotするプログラム
 
 ## 出力イメージ
 
-![](sampel_plot.png)
+![](sample_plot.png)
