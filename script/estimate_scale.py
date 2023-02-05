@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import librosa
 from pydub import AudioSegment
-import noisereduce as nr
 import japanize_matplotlib
 
 
@@ -42,8 +41,6 @@ def wave2hz(wave, frame_rate):
     """
     # 小さな振幅の音は除く
     norm_wave = np.where(np.abs(wave) < 5000, 0, wave)
-    # ノイズを除去する。
-    # norm_wave = nr.reduce_noise(y=norm_wave, sr=frame_rate)
 
     # 1秒ずつ、0.1秒ずらしながらFFTを行う。
     fft_size = frame_rate
@@ -61,6 +58,14 @@ def wave2hz(wave, frame_rate):
 
 
 def wav2scale(filepath):
+    """wavファイルを音階スケールに変換する
+
+    Args:
+        filepath (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
 
     sound = AudioSegment.from_file(filepath, "wav")
     frame_rate = sound.frame_rate
